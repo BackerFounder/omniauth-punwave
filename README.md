@@ -1,4 +1,4 @@
-# Omniauth::Backme
+# Omniauth::Punwave
 
 TODO: Write a gem description
 
