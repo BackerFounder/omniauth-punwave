@@ -9,7 +9,8 @@ module OmniAuth
       # initializing your consumer from the OAuth gem.
       option :client_options, {
         site:  "http://stage.member.punwave.com",
-        response_type: :code
+        response_type: :code,
+        token_url: "oauth/access_token"
       }
 
       # Disable state-based CSRF protection
@@ -20,19 +21,23 @@ module OmniAuth
       # additional calls (if the user id is returned with the token
       # or as a URI parameter). This may not be possible with all
       # providers.
-      uid { raw_info["id"] }
+      uid { raw_info["user"]["id"] }
 
       info do
-        {
-          nickname: raw_info["nickname"],
-          email: raw_info["email"]
-        }
+        raw_info["user"]
       end
 
       extra do
-        {
-          "raw_info" => raw_info.reject { |k, v| ["nickname", "email"].include?(k) }
-        }
+        hash = {}
+        hash['raw_info'] = raw_info unless skip_info?
+        prune! hash
+      end
+
+      def prune!(hash)
+        hash.delete_if do |_, value|
+          prune!(value) if value.is_a?(Hash)
+          value.nil? || (value.respond_to?(:empty?) && value.empty?)
+        end
       end
 
       def raw_info
