@@ -8,7 +8,7 @@ module OmniAuth
       # This is where you pass the options you would pass when
       # initializing your consumer from the OAuth gem.
       option :client_options, {
-        site:  "http://stage.member.punwave.com",
+        site:  "https://member.punwave.com",
         response_type: :code,
         token_url: "oauth/access_token"
       }
