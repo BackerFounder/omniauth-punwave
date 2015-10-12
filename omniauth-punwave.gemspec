@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Omniauth::Punwave::VERSION
   spec.authors       = ["Stan Luo", "Backer-Founder"]
   spec.email         = ["stan@backer-founder.com", "hello@backer-founder.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = "OAuth for Punwave"
+  spec.description   = ""
   spec.homepage      = ""
   spec.license       = "MIT"
 
